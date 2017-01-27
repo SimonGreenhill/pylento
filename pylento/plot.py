@@ -19,9 +19,9 @@ def plot_lento(LObj, showlabels=False, singles=True, filename=None, colors=DEFAU
     x = range(len(splits))
     
     if showlabels:
-        labels = [_ + 1 for _ in x]
-    else:
         labels = [repr(s) for s in splits]
+    else:
+        labels = [_ + 1 for _ in x]
     
     ax = plt.subplot(1, 1, 1)
     # remove chartjunk
@@ -47,12 +47,7 @@ def plot_lento(LObj, showlabels=False, singles=True, filename=None, colors=DEFAU
     plt.plot()
     plt.xlabel("Split", fontsize=16)
     plt.ylabel("Strength", fontsize=16)
-    
-    if labels:
-        plt.xticks(x, labels, rotation='vertical', fontsize=8)
-    else:
-        plt.xticks(x, labels, rotation='vertical', fontsize=8)
-        
+    plt.xticks(x, labels, rotation='vertical', fontsize=8)
     plt.margins(0.05)
     plt.subplots_adjust(bottom=0.20)
     plt.tight_layout()

@@ -154,7 +154,23 @@ class Test_Plot(unittest.TestCase):
     def test_save(self):
         with tempfile.NamedTemporaryFile() as f:
             plot_lento(self.lento, filename=f.name)
+    
+    def test_singles(self):
+        p = plot_lento(self.lento, singles=False, showlabels=True)
+        for o in p.gca().get_xticklabels():
+            assert ':' in o.get_text()
 
+    def test_showlabels(self):
+        p = plot_lento(self.lento, showlabels=True)
+        expected = [repr(s) for s in EXPECTED]
+        for o in p.gca().get_xticklabels():
+            assert o.get_text() in expected, o.get_text()
 
+        p = plot_lento(self.lento, showlabels=False)
+        expected = [str(i) for i in range(0, 8)]
+        for o in p.gca().get_xticklabels():
+            assert o.get_text() in expected
+
+    
 if __name__ == '__main__':
     unittest.main()
