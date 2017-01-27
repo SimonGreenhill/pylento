@@ -11,11 +11,6 @@ Here is a *Lento plot* showing the splits in the Ramu-Lower Sepik language cogna
 
 ![Lento Plot](https://github.com/SimonGreenhill/pylento/blob/master/doc/rls.png)
 
-Lento plots are described in:
-
-```
-```
-
 ## Usage: Command line
 
 *Basic usage:*
@@ -29,7 +24,7 @@ usage: pylento [-h] [-p PLOT] [--label] [--nosingles] input
 *Display splits:*
 
 ```shell
-> pylento doc/ramu.nex
+> pylento doc/rls.nex
 
 1    72    0    angoram:chambri:kopar:murik:tabriak:yimas
 2    41    0    aruamu:kanggape:kire:tanggu
