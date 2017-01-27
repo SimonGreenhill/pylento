@@ -3,7 +3,8 @@ python:
   - "2.7"
   - "3.3"
   - "3.4"
-  - "3.5-dev"
+  - "3.5"
+  - "3.6"
 install:
   - "pip install -r requirements.txt"
   - "pip install pytest"
@@ -11,6 +12,6 @@ install:
   - "pip install coveralls"
   - "pip install ."
 script:
-    coverage run --source treemaker -m py.test
+    coverage run --source pylento -m py.test
 after_success:
     coveralls
