@@ -5,9 +5,13 @@
 
 A python library for calculating phylogenetic splits and creating Lento plots from a nexus file.
 
-A Lento plot shows each split (i.e. a grouping of taxa) and its associated support (i.e. amount of sites or cognates that support it) above the horizontal axis. Sites that conflict with a given split are shown below the axis. There's more on the the [theory here](https://www.ctu.edu.vn/~dvxe/Bioinformatic/Software/BIT%20Software/theory.html) and in Lento et al (1995). 
+A Lento plot or Support/conflict spectrum shows each split (i.e. a grouping of taxa) and its associated support (i.e. amount of sites or cognates that support it) above the horizontal axis. Sites that conflict with a given split are shown below the axis. There's more on the the [theory here](https://www.ctu.edu.vn/~dvxe/Bioinformatic/Software/BIT%20Software/theory.html) and in Lento et al (1995). 
 
-Here is a *Lento plot* showing the splits in the Ramu-Lower Sepik language cognates from [TransNewGuinea.org](http://transnewguinea.org).
+Here is a *Lento plot* showing the splits in the Ramu-Lower Sepik language cognates from [TransNewGuinea.org](http://transnewguinea.org). Bars above the 
+x-axis show frequency of support for each split. Bars below the x-axis show the
+amount of conflict for that split (i.e. how many other splits in the data are _incompatible_). Because a split can be incompatible with many other splits, the
+frequency of conflict can be larger then the support. Therefore, the conflict
+scores are normalized following Lento et al. (1995) by the ratio of the sum of all support values to conflict values.
 
 ![Lento Plot](https://github.com/SimonGreenhill/pylento/blob/master/doc/rls.png)
 

@@ -40,7 +40,10 @@ class Split(object):
             return False
         else:
             return True
-
+    
+    def get_normalised(self, ratio):
+        return self.conflict * ratio
+        
 
 class Lento(object):
     states_to_ignore = ['0', '?', '-']
@@ -48,6 +51,7 @@ class Lento(object):
     def __init__(self, matrix=None):
         self.matrix = matrix or {}
         self._splits = None
+        self._normalising_ratio = None
         
     @property
     def ntaxa(self):
@@ -71,12 +75,28 @@ class Lento(object):
             self.get_splits()
         return self._splits 
     
+    @property
+    def normalising_ratio(self):
+        """
+        Returns a float of the normalising ratio.
+        
+        Because a split can be incompatible with many other splits, the
+        frequency of conflict can be larger then the support. Therefore, the
+        conflict scores are normalized following Lento et al. (1995) by the
+        ratio of the sum of all support values to conflict values.
+        """
+        if self._normalising_ratio is None:
+            support = sum([self.splits[s].support for s in self.splits])
+            conflict = sum([self.splits[s].conflict for s in self.splits])
+            self._normalising_ratio = support / conflict
+        return self._normalising_ratio
+    
     def iter_splits(self):
         return sorted([self.splits[s] for s in self.splits], reverse=True)
     
     def _get_total_splits(self, n):
         return pow(2, n - 1)
-        
+    
     def get_splits(self):
         if self._splits is None:
             self._splits = {}
@@ -110,7 +130,11 @@ class Lento(object):
         buffer = []
         for i, s in enumerate(self.iter_splits(), 1):
             buffer.append("\t".join([
-                "%d" % i, "%d" % s.support, "%d" % s.conflict, "%s" % s,
+                "%d" % i,
+                "%d" % s.support,
+                "%d" % s.conflict,
+                "%f" % s.get_normalised(self.normalising_ratio),
+                "%s" % s,
             ]))
         buffer = "\n".join(buffer)
         
