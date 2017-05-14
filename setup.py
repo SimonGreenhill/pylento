@@ -31,7 +31,11 @@ setup(
     ],
     keywords='phylogenetics lento',
     packages=find_packages(),
-    install_requires=[],
+    install_requires=[
+        'matplotlib>=2.0.2',
+        'python-nexus>=1.4.2',
+        'python-newick>=0.7.0',
+    ],
     entry_points={
         'console_scripts': [
             'pylento = pylento.cli:main'

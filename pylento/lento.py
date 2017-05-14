@@ -2,7 +2,7 @@
 #coding=utf-8
 import os
 import codecs
-
+import newick
 
 class Split(object):
     def __init__(self, taxa=None, support=0, conflict=0):
@@ -88,7 +88,10 @@ class Lento(object):
         if self._normalising_ratio is None:
             support = sum([self.splits[s].support for s in self.splits])
             conflict = sum([self.splits[s].conflict for s in self.splits])
-            self._normalising_ratio = support / conflict
+            try:
+                self._normalising_ratio = support / conflict
+            except ZeroDivisionError:
+                self._normalising_ratio = 0
         return self._normalising_ratio
     
     def iter_splits(self):
@@ -144,3 +147,10 @@ class Lento(object):
         return buffer
 
 
+def splits_from_tree(tree):
+    if not isinstance(tree, newick.Node):
+        raise TypeError("tree is not a `newick.Node` object")
+    for node in tree.walk():
+        yield Split([tip.name for tip in node.get_leaves()], 1, 0)
+        
+        
