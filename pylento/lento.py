@@ -152,5 +152,3 @@ def splits_from_tree(tree):
         raise TypeError("tree is not a `newick.Node` object")
     for node in tree.walk():
         yield Split([tip.name for tip in node.get_leaves()], 1, 0)
-        
-        

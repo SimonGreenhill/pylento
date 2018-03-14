@@ -91,7 +91,7 @@ class Test_Lento(unittest.TestCase):
 
     def test_iter_splits(self):
         for s in self.lento.iter_splits():
-            pass
+            s
 
     def test_get_splits(self):
         splits = self.lento.get_splits()
@@ -152,7 +152,7 @@ class Test_Plot(unittest.TestCase):
         self.lento = Lento(TEST_DATA)
     
     def test(self):
-        p = plot_lento(self.lento)
+        plot_lento(self.lento)
     
     def test_save(self):
         with tempfile.NamedTemporaryFile() as f:
