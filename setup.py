@@ -28,13 +28,15 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
     ],
     keywords='phylogenetics lento',
     packages=find_packages(),
     install_requires=[
         'matplotlib>=2.0.2',
         'python-nexus>=1.4.2',
-        'python-newick>=0.7.0',
+        'newick>=0.7.0',
     ],
     entry_points={
         'console_scripts': [
